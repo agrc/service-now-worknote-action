@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.2-0](https://github.com/agrc/service-now-worknote-action/compare/v1.0.1...v1.0.2-0) (2022-09-30)
+
+
+### 🐛 Bug Fixes
+
+* standardize repo token input name with our other actions ([8754f72](https://github.com/agrc/service-now-worknote-action/commit/8754f72aba2ae75669af46d13e70ecab0ef7342d))
+
+
+### 📖 Documentation Improvements
+
+* update usage and input descriptions ([279b9be](https://github.com/agrc/service-now-worknote-action/commit/279b9bead0d31f9761de3f7291b9459a5497f317))
+
 ## [1.0.1](https://github.com/agrc/service-now-worknote-action/compare/v1.0.0...v1.0.1) (2022-09-19)
 
 
