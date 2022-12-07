@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/agrc/service-now-worknote-action/compare/v1.0.6...v1.0.7) (2022-12-07)
+
+
+### 🐛 Bug Fixes
+
+* :evergreen_tree: november package updates ([73d268b](https://github.com/agrc/service-now-worknote-action/commit/73d268b8bad10a4486e962e9b891113e35049ade))
+
 ## [1.0.6](https://github.com/agrc/service-now-worknote-action/compare/v1.0.5...v1.0.6) (2022-11-03)
 
 
