@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/agrc/service-now-worknote-action/compare/v1.0.8...v1.0.9) (2023-06-27)
+
+
+### 📖 Documentation Improvements
+
+* add required permissions ([b75c0b5](https://github.com/agrc/service-now-worknote-action/commit/b75c0b5b54d5cb76a97d537756e0583738371877))
+
 ## [1.0.8](https://github.com/agrc/service-now-worknote-action/compare/v1.0.7...v1.0.8) (2023-04-04)
 
 
