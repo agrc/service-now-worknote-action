@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.10](https://github.com/agrc/service-now-worknote-action/compare/v1.0.9...v1.0.10) (2023-07-04)
+
+
+### 🐛 Bug Fixes
+
+* Q3 Dependency Bumps 🌲 ([39fa235](https://github.com/agrc/service-now-worknote-action/commit/39fa235ccd64c9efae3ebf53f230c7a1e9171ebb))
+
 ## [1.0.9](https://github.com/agrc/service-now-worknote-action/compare/v1.0.8...v1.0.9) (2023-06-27)
 
 
