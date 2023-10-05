@@ -19,7 +19,9 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - name: 🚦 Initialize CodeQL
         uses: github/codeql-action/init@v2
