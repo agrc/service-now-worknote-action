@@ -1,6 +1,6 @@
 {
   "name": "javascript-action",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "JavaScript Action Template",
   "main": "index.js",
   "scripts": {
