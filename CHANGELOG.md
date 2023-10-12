@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12](https://github.com/agrc/service-now-worknote-action/compare/v1.0.11...v1.0.12) (2023-10-12)
+
+
+### 🌲 Dependencies
+
+* bump the major-dependencies group with 1 update ([52fd687](https://github.com/agrc/service-now-worknote-action/commit/52fd687e4d722dadbd3deb0cc99ad318a70dc3fc))
+* bump the safe-dependencies group with 3 updates ([576880d](https://github.com/agrc/service-now-worknote-action/commit/576880d4925434fad82917ac1a0555c7921a916d))
+
 ## [1.0.11](https://github.com/agrc/service-now-worknote-action/compare/v1.0.10...v1.0.11) (2023-10-06)
 
 
