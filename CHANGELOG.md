@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.13](https://github.com/agrc/service-now-worknote-action/compare/v1.0.12...v1.0.13) (2023-10-20)
+
+
+### 🌲 Dependencies
+
+* **dev:** bump @babel/traverse from 7.23.0 to 7.23.2 ([75fa411](https://github.com/agrc/service-now-worknote-action/commit/75fa411f53fe066b246fd7bfd007c5de3511cad2))
+
 ## [1.0.12](https://github.com/agrc/service-now-worknote-action/compare/v1.0.11...v1.0.12) (2023-10-12)
 
 
