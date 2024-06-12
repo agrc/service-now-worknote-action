@@ -30765,7 +30765,7 @@ async function run() {
 
     const httpClient = new http.HttpClient(
       'service-now-work-notes-github-action',
-      [new auth.BasicCredentialHandler(username, password)]
+      [new auth.BasicCredentialHandler(username, password)],
     );
 
     const url = `https://${instanceName}.service-now.com/api/now/table/${tableName}/${systemId}`;
@@ -30782,7 +30782,7 @@ async function run() {
 
     core.info(`Action run Id: ${github.context.runId}`);
     core.info(
-      `API request: GET /repos/${owner}/${repo}/actions/runs/${runId}/approvals`
+      `API request: GET /repos/${owner}/${repo}/actions/runs/${runId}/approvals`,
     );
 
     const { data } = await octokit.request(
@@ -30791,13 +30791,15 @@ async function run() {
         owner,
         repo,
         run_id: runId,
-      }
+      },
     );
 
     core.info(`Approvals: ${data.length}`);
 
     if (data.length === 0) {
-      core.setFailed(`No approvals found for runId: ${runId}. Does this environment require approvals? Check your environments in settings: https://github.com/${owner}/${repo}/settings/environments`);
+      core.setFailed(
+        `No approvals found for runId: ${runId}. Does this environment require approvals? Check your environments in settings: https://github.com/${owner}/${repo}/settings/environments`,
+      );
 
       return;
     }
@@ -30808,7 +30810,7 @@ async function run() {
     const comments = lastAttempt.comment;
 
     core.info(
-      `Approver: ${lastAttempt.user.login}, comment: ${lastAttempt.comment}`
+      `Approver: ${lastAttempt.user.login}, comment: ${lastAttempt.comment}`,
     );
     core.endGroup();
 
@@ -30833,7 +30835,7 @@ async function run() {
 
     if (response.statusCode != 200) {
       core.setFailed(
-        `request failed:${response.statusCode}, ${response.result}`
+        `request failed:${response.statusCode}, ${response.result}`,
       );
     }
     core.endGroup();

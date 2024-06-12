@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.15](https://github.com/agrc/service-now-worknote-action/compare/v1.0.14...v1.0.15) (2024-06-12)
+
+
+### 🌲 Dependencies
+
+* q4 package updates ([9caf41a](https://github.com/agrc/service-now-worknote-action/commit/9caf41af76d11316dd22a07de49e12d3d945e761))
+
 ## [1.0.14](https://github.com/agrc/service-now-worknote-action/compare/v1.0.13...v1.0.14) (2024-04-03)
 
 
