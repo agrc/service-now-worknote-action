@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.15](https://github.com/agrc/service-now-worknote-action/compare/v1.0.14...v1.0.15) (2024-07-08)
+
+
+### Dependencies
+
+* eslint v8 -&gt; v9 ([b73aa35](https://github.com/agrc/service-now-worknote-action/commit/b73aa35568bb87fa40a802f8495041397a3feea2))
+* q4 package updates ([9caf41a](https://github.com/agrc/service-now-worknote-action/commit/9caf41af76d11316dd22a07de49e12d3d945e761))
+
 ## [1.0.14](https://github.com/agrc/service-now-worknote-action/compare/v1.0.13...v1.0.14) (2024-04-03)
 
 
