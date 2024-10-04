@@ -84,6 +84,14 @@ async function run() {
       [code]<pre>${comments}</pre>[/code]`;
     }
 
+    if (github.context.eventName === 'release' && github.context.action === 'published') {
+      notes += `
+
+      The following changelog is associated with this release:
+      [code]<pre>${github.context.payload.release.body}</pre>[/code]
+      `;
+    }
+
     core.info(`Sending: ${notes} to ${url}`);
 
     const response = await httpClient.patchJson(url, { work_notes: notes });
