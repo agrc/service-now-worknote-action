@@ -24,7 +24,7 @@ async function run() {
       [new auth.BasicCredentialHandler(username, password)],
     );
 
-    const url = `https://${instanceName}.service-now.com/api/now/table/${tableName}/${systemId}`;
+    const url = `https://${instanceName}.servicenowservices.com/api/now/table/${tableName}/${systemId}`;
 
     const octokit = github.getOctokit(token);
 
@@ -84,7 +84,10 @@ async function run() {
       [code]<pre>${comments}</pre>[/code]`;
     }
 
-    if (github.context.eventName === 'release' && github.context.action === 'published') {
+    if (
+      github.context.eventName === 'release' &&
+      github.context.action === 'published'
+    ) {
       notes += `
 
       The following changelog is associated with this release:
@@ -94,7 +97,12 @@ async function run() {
 
     core.info(`Sending: ${notes} to ${url}`);
 
-    const response = await httpClient.patchJson(url, { work_notes: notes });
+    const response = await httpClient.patchJson(url, {
+      work_notes: notes,
+      life_cycle_stage: 'Operational',
+      life_cycle_stage_status: 'In Use',
+      last_change_date: '2024-10-02',
+    });
     core.info(`Service Now api response: ${response.statusCode}`);
 
     if (response.statusCode != 200) {
