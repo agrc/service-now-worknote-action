@@ -488,6 +488,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
+const crypto = __importStar(__nccwpck_require__(6982));
 const fs = __importStar(__nccwpck_require__(9896));
 const os = __importStar(__nccwpck_require__(857));
 const utils_1 = __nccwpck_require__(302);
@@ -31500,7 +31501,7 @@ async function run() {
       [new auth.BasicCredentialHandler(username, password)],
     );
 
-    const url = `https://${instanceName}.service-now.com/api/now/table/${tableName}/${systemId}`;
+    const url = `https://${instanceName}.servicenowservices.com/api/now/table/${tableName}/${systemId}`;
 
     const octokit = github.getOctokit(token);
 
@@ -31560,9 +31561,27 @@ async function run() {
       [code]<pre>${comments}</pre>[/code]`;
     }
 
-    core.info(`Sending: ${notes} to ${url}`);
+    if (
+      github.context.eventName === 'release' &&
+      github.context.action === 'published'
+    ) {
+      notes += `
 
-    const response = await httpClient.patchJson(url, { work_notes: notes });
+      The following changelog is associated with this release:
+      [code]<pre>${github.context.payload.release.body}</pre>[/code]
+      `;
+    }
+
+    core.info(`Sending: ${notes} to ${url}`);
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+
+    const response = await httpClient.patchJson(url, {
+      work_notes: notes,
+      life_cycle_stage: 'Operational',
+      life_cycle_stage_status: 'In Use',
+      last_change_date: formattedDate,
+    });
     core.info(`Service Now api response: ${response.statusCode}`);
 
     if (response.statusCode != 200) {
