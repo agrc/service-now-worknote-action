@@ -96,12 +96,14 @@ async function run() {
     }
 
     core.info(`Sending: ${notes} to ${url}`);
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
 
     const response = await httpClient.patchJson(url, {
       work_notes: notes,
       life_cycle_stage: 'Operational',
       life_cycle_stage_status: 'In Use',
-      last_change_date: '2024-10-02',
+      last_change_date: formattedDate,
     });
     core.info(`Service Now api response: ${response.statusCode}`);
 
