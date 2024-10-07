@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.0.16](https://github.com/agrc/service-now-worknote-action/compare/v1.0.15...v1.0.16) (2024-10-07)
+
+
+### Features
+
+* add change log if this action was trigger by a release ([5288139](https://github.com/agrc/service-now-worknote-action/commit/5288139cbca8d13d4807eb7626b622073e8ccbfb)), closes [#99](https://github.com/agrc/service-now-worknote-action/issues/99)
+
+
+### Bug Fixes
+
+* add last change date ([e69711e](https://github.com/agrc/service-now-worknote-action/commit/e69711e80252d2a95aa9595fe9c0e6dfb861d225))
+* update to new service now ([6428b51](https://github.com/agrc/service-now-worknote-action/commit/6428b5192925611376778bf8f243f9bd331e889c)), closes [#103](https://github.com/agrc/service-now-worknote-action/issues/103)
+
+
+### Dependencies
+
+* bump the safe-dependencies group across 1 directory with 6 updates ([ab726aa](https://github.com/agrc/service-now-worknote-action/commit/ab726aa90d42f7d897cec20df4cdd42034bc77cc))
+* FY25Q2 dependency updates 🌲 ([5154b99](https://github.com/agrc/service-now-worknote-action/commit/5154b99ac33854814076dc1cd3cbcca6dffff683))
+* FY25Q2 dependency updates 🌲 ([b6c1b28](https://github.com/agrc/service-now-worknote-action/commit/b6c1b289fc5d1679bc8c4248e2bc4c166ecad97b))
+
 ## [1.0.15](https://github.com/agrc/service-now-worknote-action/compare/v1.0.14...v1.0.15) (2024-07-08)
 
 
