@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.17](https://github.com/agrc/service-now-worknote-action/compare/v1.0.16...v1.0.17) (2025-01-07)
+
+
+### Dependencies
+
+* **dev:** bump the safe-dependencies group across 1 directory with 6 updates ([d029e3a](https://github.com/agrc/service-now-worknote-action/commit/d029e3a20f81da3b8ba957305e1f872be878f4a3))
+* update deps ([d84ccc7](https://github.com/agrc/service-now-worknote-action/commit/d84ccc7148c9258bfdc3b001a0006c8d1eb5f9ac))
+
 ## [1.0.16](https://github.com/agrc/service-now-worknote-action/compare/v1.0.15...v1.0.16) (2024-10-07)
 
 
