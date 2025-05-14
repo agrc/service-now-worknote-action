@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.18](https://github.com/agrc/service-now-worknote-action/compare/v1.0.17...v1.0.18) (2025-05-14)
+
+
+### Dependencies
+
+* fy25q4 package updates ([07e0e01](https://github.com/agrc/service-now-worknote-action/commit/07e0e019e471a185e0024fd78d5d9e75cf9c7d67))
+
 ## [1.0.17](https://github.com/agrc/service-now-worknote-action/compare/v1.0.16...v1.0.17) (2025-01-07)
 
 
