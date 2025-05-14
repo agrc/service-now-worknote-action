@@ -19,10 +19,9 @@ async function run() {
     core.setSecret(tableName);
     core.setSecret(instanceName);
 
-    const httpClient = new http.HttpClient(
-      'service-now-work-notes-github-action',
-      [new auth.BasicCredentialHandler(username, password)],
-    );
+    const httpClient = new http.HttpClient('service-now-work-notes-github-action', [
+      new auth.BasicCredentialHandler(username, password),
+    ]);
 
     const url = `https://${instanceName}.servicenowservices.com/api/now/table/${tableName}/${systemId}`;
 
@@ -30,25 +29,18 @@ async function run() {
 
     core.startGroup('🔔 Querying for run approvals');
 
-    const owner =
-      github.context.payload.repository.organization ??
-      github.context.payload.repository.owner.login;
+    const owner = github.context.payload.repository.organization ?? github.context.payload.repository.owner.login;
     const repo = github.context.payload.repository.name;
     const runId = github.context.runId;
 
     core.info(`Action run Id: ${github.context.runId}`);
-    core.info(
-      `API request: GET /repos/${owner}/${repo}/actions/runs/${runId}/approvals`,
-    );
+    core.info(`API request: GET /repos/${owner}/${repo}/actions/runs/${runId}/approvals`);
 
-    const { data } = await octokit.request(
-      `GET /repos/${owner}/${repo}/actions/runs/${runId}/approvals`,
-      {
-        owner,
-        repo,
-        run_id: runId,
-      },
-    );
+    const { data } = await octokit.request(`GET /repos/${owner}/${repo}/actions/runs/${runId}/approvals`, {
+      owner,
+      repo,
+      run_id: runId,
+    });
 
     core.info(`Approvals: ${data.length}`);
 
@@ -65,9 +57,7 @@ async function run() {
     const approver = lastAttempt.user.login;
     const comments = lastAttempt.comment;
 
-    core.info(
-      `Approver: ${lastAttempt.user.login}, comment: ${lastAttempt.comment}`,
-    );
+    core.info(`Approver: ${lastAttempt.user.login}, comment: ${lastAttempt.comment}`);
     core.endGroup();
 
     core.startGroup('🔔 Sending work note to Service Now');
@@ -84,10 +74,7 @@ async function run() {
       [code]<pre>${comments}</pre>[/code]`;
     }
 
-    if (
-      github.context.eventName === 'release' &&
-      github.context.action === 'published'
-    ) {
+    if (github.context.eventName === 'release' && github.context.action === 'published') {
       notes += `
 
       The following changelog is associated with this release:
@@ -108,9 +95,7 @@ async function run() {
     core.info(`Service Now api response: ${response.statusCode}`);
 
     if (response.statusCode != 200) {
-      core.setFailed(
-        `request failed:${response.statusCode}, ${response.result}`,
-      );
+      core.setFailed(`request failed:${response.statusCode}, ${response.result}`);
     }
     core.endGroup();
   } catch (error) {
