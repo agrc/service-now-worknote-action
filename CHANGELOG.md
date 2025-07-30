@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.19](https://github.com/agrc/service-now-worknote-action/compare/v1.0.18...v1.0.19) (2025-07-30)
+
+
+### Dependencies
+
+* audit fix ([a14dc3f](https://github.com/agrc/service-now-worknote-action/commit/a14dc3f890622ff153c99f692e6d935c6a954d51))
+* **dev:** bump eslint-plugin-prettier in the safe-dependencies group ([de51d22](https://github.com/agrc/service-now-worknote-action/commit/de51d2222432a0ebe0bee28cd5d13d0ff067d3a7))
+* **dev:** bump the safe-dependencies group across 1 directory with 7 updates ([c921bfa](https://github.com/agrc/service-now-worknote-action/commit/c921bfa09be5b00adf2328e10f61244e9b9eebd1))
+
 ## [1.0.18](https://github.com/agrc/service-now-worknote-action/compare/v1.0.17...v1.0.18) (2025-05-14)
 
 
