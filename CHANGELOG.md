@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.20](https://github.com/agrc/service-now-worknote-action/compare/v1.0.19...v1.0.20) (2025-11-06)
+
+
+### Dependencies
+
+* node 20 -&gt; 24 ([540baaf](https://github.com/agrc/service-now-worknote-action/commit/540baaf9b9b8b02dd4b73c61147f5088e89617bc))
+
 ## [1.0.19](https://github.com/agrc/service-now-worknote-action/compare/v1.0.18...v1.0.19) (2025-07-30)
 
 
