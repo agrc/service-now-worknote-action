@@ -9,19 +9,15 @@ async function run() {
     const username = core.getInput('username', { required: true });
     const password = core.getInput('password', { required: true });
     const systemId = core.getInput('system-id', { required: true });
-    const tableName = core.getInput('table-name', { required: false });
-    const instanceName = core.getInput('instance-name', { required: false });
+    const tableName = core.getInput('table-name', { required: true });
+    const instanceName = core.getInput('instance-name', { required: true });
 
     core.setSecret(token);
     core.setSecret(username);
     core.setSecret(password);
     core.setSecret(systemId);
-    if (tableName) {
-      core.setSecret(tableName);
-    }
-    if (instanceName) {
-      core.setSecret(instanceName);
-    }
+    core.setSecret(tableName);
+    core.setSecret(instanceName);
 
     const httpClient = new HttpClient('service-now-work-notes-github-action', [
       new BasicCredentialHandler(username, password),
