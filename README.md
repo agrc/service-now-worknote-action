@@ -7,7 +7,7 @@ This action posts a worknote to a Service Now table based on a [Github Action en
 
 A comment is posted to the table with the reviewers email and any comments.
 
-<img width="856" alt="image" src="https://user-images.githubusercontent.com/325813/191078116-557707db-594a-4514-970f-be28e59eb634.png">
+![screenshot of work note](https://user-images.githubusercontent.com/325813/191078116-557707db-594a-4514-970f-be28e59eb634.png)
 
 ## Usage
 
