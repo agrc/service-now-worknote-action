@@ -16,8 +16,12 @@ async function run() {
     core.setSecret(username);
     core.setSecret(password);
     core.setSecret(systemId);
-    core.setSecret(tableName);
-    core.setSecret(instanceName);
+    if (tableName) {
+      core.setSecret(tableName);
+    }
+    if (instanceName) {
+      core.setSecret(instanceName);
+    }
 
     const httpClient = new HttpClient('service-now-work-notes-github-action', [
       new BasicCredentialHandler(username, password),
@@ -94,7 +98,7 @@ async function run() {
     });
     core.info(`Service Now api response: ${response.statusCode}`);
 
-    if (response.statusCode != 200) {
+    if (response.statusCode !== 200) {
       core.setFailed(`request failed:${response.statusCode}, ${response.result}`);
     }
     core.endGroup();
