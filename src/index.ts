@@ -1,7 +1,7 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const http = require('@actions/http-client');
-const auth = require('@actions/http-client/lib/auth');
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+import { BasicCredentialHandler } from '@actions/http-client/lib/auth.js';
+import { HttpClient } from '@actions/http-client/lib/index.js';
 
 async function run() {
   try {
@@ -19,8 +19,8 @@ async function run() {
     core.setSecret(tableName);
     core.setSecret(instanceName);
 
-    const httpClient = new http.HttpClient('service-now-work-notes-github-action', [
-      new auth.BasicCredentialHandler(username, password),
+    const httpClient = new HttpClient('service-now-work-notes-github-action', [
+      new BasicCredentialHandler(username, password),
     ]);
 
     const url = `https://${instanceName}.servicenowservices.com/api/now/table/${tableName}/${systemId}`;
@@ -29,8 +29,8 @@ async function run() {
 
     core.startGroup('🔔 Querying for run approvals');
 
-    const owner = github.context.payload.repository.organization ?? github.context.payload.repository.owner.login;
-    const repo = github.context.payload.repository.name;
+    const owner = github.context.payload.repository?.organization ?? github.context.payload.repository?.owner.login;
+    const repo = github.context.payload.repository?.name;
     const runId = github.context.runId;
 
     core.info(`Action run Id: ${github.context.runId}`);
@@ -78,7 +78,7 @@ async function run() {
       notes += `
 
       The following changelog is associated with this release:
-      [code]<pre>${github.context.payload.release.body}</pre>[/code]
+      [code]<pre>${github.context.payload.release?.body}</pre>[/code]
       `;
     }
 
@@ -98,8 +98,8 @@ async function run() {
       core.setFailed(`request failed:${response.statusCode}, ${response.result}`);
     }
     core.endGroup();
-  } catch (error) {
-    core.setFailed(error.message);
+  } catch (error: unknown) {
+    core.setFailed((error as Error).message);
   }
 }
 
