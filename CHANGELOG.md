@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.21](https://github.com/agrc/service-now-worknote-action/compare/v1.0.20...v1.0.21) (2025-11-07)
+
+
+### Bug Fixes
+
+* add missing build step when building release assets ([10ffa38](https://github.com/agrc/service-now-worknote-action/commit/10ffa38eb0ab31445ffcd76dd22af2f2b4d40fc6))
+
 ## [1.0.20](https://github.com/agrc/service-now-worknote-action/compare/v1.0.19...v1.0.20) (2025-11-06)
 
 
