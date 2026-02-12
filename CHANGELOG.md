@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.22](https://github.com/agrc/service-now-worknote-action/compare/v1.0.21...v1.0.22) (2026-02-12)
+
+
+### Dependencies
+
+* **dev:** bump @types/node ([68808b5](https://github.com/agrc/service-now-worknote-action/commit/68808b5e4ffd49b54058293221d1984b93c5d28a))
+* **dev:** bump eslint in the safe-dependencies group across 1 directory ([9b56e1e](https://github.com/agrc/service-now-worknote-action/commit/9b56e1ed7c11e89ba9d477a89b18a7f93c7edbdc))
+* fy26 q3 dependency updates ([5bcd036](https://github.com/agrc/service-now-worknote-action/commit/5bcd036a4f10f27c360b02520fd9725107352eb7))
+
 ## [1.0.21](https://github.com/agrc/service-now-worknote-action/compare/v1.0.20...v1.0.21) (2025-11-07)
 
 
