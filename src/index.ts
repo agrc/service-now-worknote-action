@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { BasicCredentialHandler } from '@actions/http-client/lib/auth.js';
-import { HttpClient } from '@actions/http-client/lib/index.js';
+import { HttpClient } from '@actions/http-client';
+import { BasicCredentialHandler } from '@actions/http-client/lib/auth';
 
 async function run() {
   try {
