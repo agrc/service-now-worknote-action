@@ -1,2 +1,6 @@
 onlyBuiltDependencies:
   - esbuild
+
+overrides:
+  js-yaml@>=4.0.0 <4.1.1: '>=4.1.1'
+  storybook@>=9.0.0 <9.1.17: '>=9.1.17'
