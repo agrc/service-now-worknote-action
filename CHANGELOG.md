@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.23](https://github.com/agrc/service-now-worknote-action/compare/v1.0.22...v1.0.23) (2026-05-20)
+
+
+### Features
+
+* update pnpm workspace configuration with minimum release age and build allowances ([773121b](https://github.com/agrc/service-now-worknote-action/commit/773121b4f7fa34393b06c1101bcaeb1317190bdc))
+
+
+### Dependencies
+
+* bump NPM dependencies 🌲 ([eb01d02](https://github.com/agrc/service-now-worknote-action/commit/eb01d028590dbc6d7aaeed6f2f5ea4074027cb9b))
+
 ## [1.0.22](https://github.com/agrc/service-now-worknote-action/compare/v1.0.21...v1.0.22) (2026-02-12)
 
 
