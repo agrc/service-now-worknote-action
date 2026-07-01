@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           show-progress: false
 
       - name: 📦 Setup PNPM
-        uses: pnpm/action-setup@v6.0.6
+        uses: pnpm/action-setup@v6.0.9
         with:
           version: 11
 
@@ -38,12 +38,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           show-progress: false
 
       - name: 📦 Setup PNPM
-        uses: pnpm/action-setup@v6.0.6
+        uses: pnpm/action-setup@v6.0.9
         with:
           version: 11
 
@@ -67,21 +67,21 @@ jobs:
       contents: write
     steps:
       - name: 🪙 Convert token
-        uses: actions/create-github-app-token@v3.1.1
+        uses: actions/create-github-app-token@v3.2.0
         id: generate_token
         with:
           client-id: ${{ secrets.UGRC_RELEASE_BOT_APP_ID }}
           private-key: ${{ secrets.UGRC_RELEASE_BOT_APP_KEY }}
 
       - name: ⬇️ Set up code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.head_ref }}
           show-progress: false
           token: ${{ steps.generate_token.outputs.token }}
 
       - name: 📦 Setup PNPM
-        uses: pnpm/action-setup@v6.0.6
+        uses: pnpm/action-setup@v6.0.9
         with:
           version: 11
 
