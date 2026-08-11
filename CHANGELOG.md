@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.24](https://github.com/agrc/service-now-worknote-action/compare/v1.0.23...v1.0.24) (2026-08-11)
+
+
+### Dependencies
+
+* bump NPM dependencies 🌲 ([028235d](https://github.com/agrc/service-now-worknote-action/commit/028235d28826d788478ce83ccac7f0aae359cd94))
+* **dev:** bump the safe-dependencies group across 1 directory with 4 updates ([d12ea9c](https://github.com/agrc/service-now-worknote-action/commit/d12ea9c160c0745f8a18530ce9f3a32dc7eaacbf))
+* TypeScript v5 -&gt; v6 ([76d3597](https://github.com/agrc/service-now-worknote-action/commit/76d35979c3e8f155e37b3c57a67e12f665aece00))
+
 ## [1.0.23](https://github.com/agrc/service-now-worknote-action/compare/v1.0.22...v1.0.23) (2026-05-20)
 
 
