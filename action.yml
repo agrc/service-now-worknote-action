@@ -4,15 +4,16 @@ inputs:
   repo-token:
     description: 'the github token for the runner'
     required: true
-  username:
-    description: 'the username of the credentials with REST API access for basic authentication'
+  client-id:
+    description: 'the client id of the credentials for OAuth authentication'
     required: true
-  password:
-    description: 'the password of the credentials with REST API access for basic authentication'
+  client-secret:
+    description: 'the client secret of the credentials for OAuth authentication'
     required: true
   instance-name:
-    description: 'the sub address to `https://{SN_INSTANCE}.service-now.com`'
-    required: true
+    description: 'the ServiceNow host (e.g. `workspaces.dts.utah.gov`, `dev.workspaces.dts.utah.gov`)'
+    required: false
+    default: 'workspaces.dts.utah.gov'
   table-name:
     description: 'the table name that contains the system id item to update'
     required: true
