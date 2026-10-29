@@ -1,30 +1,25 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { HttpClient } from '@actions/http-client';
-import { BasicCredentialHandler } from '@actions/http-client/lib/auth';
+import { BearerCredentialHandler } from '@actions/http-client/lib/auth';
+import { getOAuthToken, validateInstanceName } from './auth';
 
 async function run() {
   try {
     const token = core.getInput('repo-token', { required: true });
-    const username = core.getInput('username', { required: true });
-    const password = core.getInput('password', { required: true });
+    const clientId = core.getInput('client-id', { required: true });
+    const clientSecret = core.getInput('client-secret', { required: true });
     const systemId = core.getInput('system-id', { required: true });
     const tableName = core.getInput('table-name', { required: true });
-    const instanceName = core.getInput('instance-name', { required: true });
+    const instanceName = core.getInput('instance-name') || 'workspaces.dts.utah.gov';
 
     core.setSecret(token);
-    core.setSecret(username);
-    core.setSecret(password);
+    core.setSecret(clientId);
+    core.setSecret(clientSecret);
     core.setSecret(systemId);
     core.setSecret(tableName);
-    core.setSecret(instanceName);
 
-    const httpClient = new HttpClient('service-now-work-notes-github-action', [
-      new BasicCredentialHandler(username, password),
-    ]);
-
-    const url = `https://${instanceName}.servicenowservices.com/api/now/table/${tableName}/${systemId}`;
-
+    const host = validateInstanceName(instanceName);
     const octokit = github.getOctokit(token);
 
     core.startGroup('🔔 Querying for run approvals');
@@ -59,6 +54,22 @@ async function run() {
 
     core.info(`Approver: ${lastAttempt.user.login}, comment: ${lastAttempt.comment}`);
     core.endGroup();
+
+    core.startGroup('🔑 Authenticating with Service Now');
+
+    const authClient = new HttpClient('service-now-work-notes-github-action');
+    const accessToken = await getOAuthToken(authClient, clientId, clientSecret, instanceName);
+
+    core.setSecret(accessToken);
+    core.info('OAuth token acquired successfully');
+
+    core.endGroup();
+
+    const httpClient = new HttpClient('service-now-work-notes-github-action', [
+      new BearerCredentialHandler(accessToken),
+    ]);
+
+    const url = `https://${host}/api/now/table/${encodeURIComponent(tableName)}/${encodeURIComponent(systemId)}`;
 
     core.startGroup('🔔 Sending work note to Service Now');
 
@@ -97,6 +108,7 @@ async function run() {
     if (response.statusCode !== 200) {
       core.setFailed(`request failed:${response.statusCode}, ${response.result}`);
     }
+
     core.endGroup();
   } catch (error: unknown) {
     core.setFailed((error as Error).message);
