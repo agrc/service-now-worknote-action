@@ -22,8 +22,8 @@ jobs:
         uses: agrc/service-now-worknote-action@main
         with:
           repo-token: ${{ github.token }}
-          username: ${{ secrets.SN_USERNAME }}
-          password: ${{ secrets.SN_PASSWORD }}
+          client-id: ${{ secrets.SN_CLIENT_ID }}
+          client-secret: ${{ secrets.SN_CLIENT_SECRET }}
           instance-name: ${{ secrets.SN_INSTANCE }}
           table-name: ${{ secrets.SN_TABLE }}
           system-id: ${{ secrets.SN_SYS_ID }}
@@ -43,8 +43,8 @@ jobs:
         uses: agrc/service-now-worknote-action@dev
         with:
           repo-token: ${{ github.token }}
-          username: ${{ secrets.SN_USERNAME }}
-          password: ${{ secrets.SN_PASSWORD }}
+          client-id: ${{ secrets.SN_CLIENT_ID }}
+          client-secret: ${{ secrets.SN_CLIENT_SECRET }}
           instance-name: ${{ secrets.SN_INSTANCE }}
           table-name: ${{ secrets.SN_TABLE }}
           system-id: ${{ secrets.SN_SYS_ID }}

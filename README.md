@@ -27,9 +27,9 @@ You can now consume the action by referencing the v1 branch
   uses: agrc/service-now-worknote-action@v1
   with:
     repo-token: ${{ github.token }}
-    username: ${{ secrets.SN_USERNAME }}
-    password: ${{ secrets.SN_PASSWORD }}
-    instance-name: ${{ secrets.SN_INSTANCE }}
+    client-id: ${{ secrets.SN_CLIENT_ID }}
+    client-secret: ${{ secrets.SN_CLIENT_SECRET }}
+    instance-name: 'workspaces.dts.utah.gov' # Optional: workspaces.dts.utah.gov (default), dev.workspaces.dts.utah.gov, etc.
     table-name: ${{ secrets.SN_TABLE }}
     system-id: ${{ secrets.SN_SYS_ID }}
 ```
