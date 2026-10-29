@@ -29307,16 +29307,17 @@ var __awaiter$1 = (undefined && undefined.__awaiter) || function (thisArg, _argu
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-class BasicCredentialHandler {
-    constructor(username, password) {
-        this.username = username;
-        this.password = password;
+class BearerCredentialHandler {
+    constructor(token) {
+        this.token = token;
     }
+    // currently implements pre-authorization
+    // TODO: support preAuth = false where it hooks on 401
     prepareRequest(options) {
         if (!options.headers) {
             throw Error('The request has no headers');
         }
-        options.headers['Authorization'] = `Basic ${Buffer.from(`${this.username}:${this.password}`).toString('base64')}`;
+        options.headers['Authorization'] = `Bearer ${this.token}`;
     }
     // This handler cannot handle 401
     canHandleAuthentication() {
@@ -34475,24 +34476,71 @@ function getOctokit(token, options, ...additionalPlugins) {
     return new GitHubWithPlugins(getOctokitOptions(token));
 }
 
+const ALLOWED_DOMAINS = ['dts.utah.gov', 'service-now.com', 'servicenowservices.com'];
+function isAllowedHost(hostname) {
+    return ALLOWED_DOMAINS.some((domain) => hostname.endsWith(`.${domain}`));
+}
+function getHostname(input) {
+    try {
+        return new URL(input.includes('://') ? input : `https://${input}`).hostname.toLowerCase();
+    }
+    catch {
+        throw new Error(`Invalid ServiceNow host: "${input}"`);
+    }
+}
+function validateInstanceName(instanceName) {
+    const target = instanceName?.trim() || 'workspaces.dts.utah.gov';
+    const hostname = getHostname(target);
+    if (!isAllowedHost(hostname)) {
+        throw new Error(`Invalid ServiceNow host: "${hostname}". Host must belong to dts.utah.gov, service-now.com, or servicenowservices.com.`);
+    }
+    return hostname;
+}
+function getOAuthTokenUrl(instanceName) {
+    const host = validateInstanceName(instanceName);
+    return `https://${host}/oauth_token.do`;
+}
+async function getOAuthToken(httpClient, clientId, clientSecret, instanceName) {
+    const tokenUrl = getOAuthTokenUrl(instanceName);
+    const params = new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: clientId,
+        client_secret: clientSecret,
+    });
+    const response = await httpClient.post(tokenUrl, params.toString(), {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    });
+    if (response.message.statusCode !== 200) {
+        throw new Error(`Failed to obtain OAuth token from ServiceNow at ${tokenUrl} (status ${response.message.statusCode})`);
+    }
+    const responseBody = await response.readBody();
+    let tokenData;
+    try {
+        tokenData = JSON.parse(responseBody);
+    }
+    catch {
+        throw new Error(`Failed to parse OAuth token response from ${tokenUrl}`);
+    }
+    if (!tokenData || typeof tokenData.access_token !== 'string' || !tokenData.access_token.trim()) {
+        throw new Error(`OAuth token response from ${tokenUrl} did not contain an access_token`);
+    }
+    return tokenData.access_token;
+}
+
 async function run() {
     try {
         const token = getInput('repo-token', { required: true });
-        const username = getInput('username', { required: true });
-        const password = getInput('password', { required: true });
+        const clientId = getInput('client-id', { required: true });
+        const clientSecret = getInput('client-secret', { required: true });
         const systemId = getInput('system-id', { required: true });
         const tableName = getInput('table-name', { required: true });
-        const instanceName = getInput('instance-name', { required: true });
+        const instanceName = getInput('instance-name') || 'workspaces.dts.utah.gov';
         setSecret(token);
-        setSecret(username);
-        setSecret(password);
+        setSecret(clientId);
+        setSecret(clientSecret);
         setSecret(systemId);
         setSecret(tableName);
-        setSecret(instanceName);
-        const httpClient = new HttpClient('service-now-work-notes-github-action', [
-            new BasicCredentialHandler(username, password),
-        ]);
-        const url = `https://${instanceName}.servicenowservices.com/api/now/table/${tableName}/${systemId}`;
+        const host = validateInstanceName(instanceName);
         const octokit = getOctokit(token);
         startGroup('🔔 Querying for run approvals');
         const owner = context.payload.repository?.organization ?? context.payload.repository?.owner.login;
@@ -34515,6 +34563,18 @@ async function run() {
         const comments = lastAttempt.comment;
         info(`Approver: ${lastAttempt.user.login}, comment: ${lastAttempt.comment}`);
         endGroup();
+        startGroup('🔑 Authenticating with Service Now');
+        const authClient = new HttpClient('service-now-work-notes-github-action', [], {
+            allowRedirects: false,
+        });
+        const accessToken = await getOAuthToken(authClient, clientId, clientSecret, instanceName);
+        setSecret(accessToken);
+        info('OAuth token acquired successfully');
+        endGroup();
+        const httpClient = new HttpClient('service-now-work-notes-github-action', [new BearerCredentialHandler(accessToken)], {
+            allowRedirects: false,
+        });
+        const url = `https://${host}/api/now/table/${encodeURIComponent(tableName)}/${encodeURIComponent(systemId)}`;
         startGroup('🔔 Sending work note to Service Now');
         let notes = `[code]<h2>🚀🚀🚀 New Deployment 🚀🚀🚀</h2>[/code]
     [code]This item has been deployed using the <strong>${lastAttempt.environments[0].name}</strong> environment via a <a href="https://github.com/${owner}/${repo}/actions/runs/${runId}">GitHub Action</a> pipeline.[/code]
