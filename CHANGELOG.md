@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.25](https://github.com/agrc/service-now-worknote-action/compare/v1.0.24...v1.0.25) (2026-10-29)
+
+
+### Dependencies
+
+* bump @types/node and defer unsupported TypeScript 7 ([#164](https://github.com/agrc/service-now-worknote-action/issues/164)) ([45c3c89](https://github.com/agrc/service-now-worknote-action/commit/45c3c89fb040bc300b91229a6424cfd6941d049a))
+* bump js-yaml from 4.3.1 to 4.3.2 ([#160](https://github.com/agrc/service-now-worknote-action/issues/160)) ([2cc47a8](https://github.com/agrc/service-now-worknote-action/commit/2cc47a87f6adf87e8fb70c09414882351283f4a2))
+* bump source-map-js from 1.2.1 to 1.2.2 ([#169](https://github.com/agrc/service-now-worknote-action/issues/169)) ([b0ebffd](https://github.com/agrc/service-now-worknote-action/commit/b0ebffd944184d461db175c6a4831dc1856d5209))
+* bump undici from 6.28.0 to 6.29.1 ([#170](https://github.com/agrc/service-now-worknote-action/issues/170)) ([59f7ce4](https://github.com/agrc/service-now-worknote-action/commit/59f7ce465b18e50989d92180f6f4a0d000815e8e))
+* bump vite from 8.0.12 to 8.3.5 ([#172](https://github.com/agrc/service-now-worknote-action/issues/172)) ([35f7452](https://github.com/agrc/service-now-worknote-action/commit/35f745278790940b70ac4b40f577257d8e5b9013))
+* **dev:** bump the safe-dependencies group across 1 directory with 5 updates ([#173](https://github.com/agrc/service-now-worknote-action/issues/173)) ([60c83a7](https://github.com/agrc/service-now-worknote-action/commit/60c83a7332e0cf8eaace3dc00c2ad6ff709e827c))
+* **dev:** bump vitest from 4.1.10 to 5.0.5 ([#168](https://github.com/agrc/service-now-worknote-action/issues/168)) ([7b49d15](https://github.com/agrc/service-now-worknote-action/commit/7b49d158d3e20e2177b5e79b8d60beff5aa28b04))
+
 ## [1.0.24](https://github.com/agrc/service-now-worknote-action/compare/v1.0.23...v1.0.24) (2026-08-11)
 
 
