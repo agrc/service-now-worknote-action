@@ -1,6 +1,6 @@
 {
   "name": "@ugrc/service-now-worknote-action",
-  "version": "1.0.25",
+  "version": "1.0.26-rc.1",
   "private": true,
   "description": "An action to update ServiceNow business applications with release notes",
   "keywords": [

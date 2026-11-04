@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.26-rc.1](https://github.com/agrc/service-now-worknote-action/compare/v1.0.25...v1.0.26-rc.1) (2026-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace basic auth with oauth2
+
+### Features
+
+* replace basic auth with oauth2 ([310eced](https://github.com/agrc/service-now-worknote-action/commit/310eced0f895e59802a4d5bf0619dd27a9a4b96f))
+
+
+### Documentation
+
+* update usage example ([47792d4](https://github.com/agrc/service-now-worknote-action/commit/47792d4da4dceffb9d3b00bedbd9dbb4df4230a1))
+
 ## [1.0.25](https://github.com/agrc/service-now-worknote-action/compare/v1.0.24...v1.0.25) (2026-10-29)
 
 
