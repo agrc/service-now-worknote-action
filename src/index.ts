@@ -83,7 +83,7 @@ async function run() {
     [code]This item has been deployed using the <strong>${lastAttempt.environments[0].name}</strong> environment via a <a href="https://github.com/${owner}/${repo}/actions/runs/${runId}">GitHub Action</a> pipeline.[/code]
 
     [code]It was <strong>${lastAttempt.state}</strong> by the GitHub user <a href="${lastAttempt.user.html_url}">${approver}</a>.[/code]`;
-    if (comments.length > 0) {
+    if (comments && comments.length > 0) {
       notes += `
 
       The following comment was added with the approval
@@ -91,11 +91,15 @@ async function run() {
       [code]<pre>${comments}</pre>[/code]`;
     }
 
-    if (github.context.eventName === 'release' && github.context.action === 'published') {
+    if (
+      github.context.eventName === 'release' &&
+      github.context.payload.action === 'published' &&
+      github.context.payload.release?.body
+    ) {
       notes += `
 
       The following changelog is associated with this release:
-      [code]<pre>${github.context.payload.release?.body}</pre>[/code]
+      [code]<pre>${github.context.payload.release.body}</pre>[/code]
       `;
     }
 
@@ -112,7 +116,7 @@ async function run() {
     core.info(`Service Now api response: ${response.statusCode}`);
 
     if (response.statusCode !== 200) {
-      core.setFailed(`request failed:${response.statusCode}, ${response.result}`);
+      core.setFailed(`request failed: ${response.statusCode}`);
     }
 
     core.endGroup();

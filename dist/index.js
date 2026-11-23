@@ -34580,18 +34580,20 @@ async function run() {
     [code]This item has been deployed using the <strong>${lastAttempt.environments[0].name}</strong> environment via a <a href="https://github.com/${owner}/${repo}/actions/runs/${runId}">GitHub Action</a> pipeline.[/code]
 
     [code]It was <strong>${lastAttempt.state}</strong> by the GitHub user <a href="${lastAttempt.user.html_url}">${approver}</a>.[/code]`;
-        if (comments.length > 0) {
+        if (comments && comments.length > 0) {
             notes += `
 
       The following comment was added with the approval
 
       [code]<pre>${comments}</pre>[/code]`;
         }
-        if (context.eventName === 'release' && context.action === 'published') {
+        if (context.eventName === 'release' &&
+            context.payload.action === 'published' &&
+            context.payload.release?.body) {
             notes += `
 
       The following changelog is associated with this release:
-      [code]<pre>${context.payload.release?.body}</pre>[/code]
+      [code]<pre>${context.payload.release.body}</pre>[/code]
       `;
         }
         info(`Sending: ${notes} to ${url}`);
@@ -34605,7 +34607,7 @@ async function run() {
         });
         info(`Service Now api response: ${response.statusCode}`);
         if (response.statusCode !== 200) {
-            setFailed(`request failed:${response.statusCode}, ${response.result}`);
+            setFailed(`request failed: ${response.statusCode}`);
         }
         endGroup();
     }
