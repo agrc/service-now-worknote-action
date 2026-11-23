@@ -13,12 +13,15 @@ A comment is posted to the table with the reviewers email and any comments.
 
 ### Workflow Permissions
 
-This workflow will need the following permissions in your workflow file:
+This workflow will need the following permissions in your workflow file to query workflow run approvals:
 
 ```yaml
 permissions:
-  deployments: read
+  actions: read
 ```
+
+> [!NOTE]
+> Your deployment target [GitHub Environment](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#required-reviewers) must have **Required reviewers** enabled; the action will fail if no run approvals are found.
 
 You can now consume the action by referencing the v2 branch
 
