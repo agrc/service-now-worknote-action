@@ -161,9 +161,7 @@ describe('getOAuthToken', () => {
 
     await expect(
       getOAuthToken(mockHttpClient, 'my-client-id', 'my-secret', 'workspaces.dts.utah.gov'),
-    ).rejects.toThrowError(
-      'Failed to parse OAuth token response from https://workspaces.dts.utah.gov/oauth_token.do',
-    );
+    ).rejects.toThrowError('Failed to parse OAuth token response from https://workspaces.dts.utah.gov/oauth_token.do');
   });
 
   it('throws an error without body when ServiceNow response does not contain access_token', async () => {
@@ -186,9 +184,11 @@ describe('getOAuthToken', () => {
   it('does not log response bodies or secrets on error', async () => {
     const mockPost = vi.fn().mockResolvedValue({
       message: { statusCode: 400 } as IncomingMessage,
-      readBody: vi.fn().mockResolvedValue(
-        'Echoed form data: client_id=my-client+id&client_secret=secret+value%3D&access_token=bearer-token-123',
-      ),
+      readBody: vi
+        .fn()
+        .mockResolvedValue(
+          'Echoed form data: client_id=my-client+id&client_secret=secret+value%3D&access_token=bearer-token-123',
+        ),
     } as unknown as HttpClientResponse);
 
     const mockHttpClient = {
