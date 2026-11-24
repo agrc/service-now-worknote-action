@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.1](https://github.com/agrc/service-now-worknote-action/compare/v2.0.0...v2.0.1) (2026-11-24)
+
+
+### Bug Fixes
+
+* check payload action for release notes and guard approval comments ([3fa194e](https://github.com/agrc/service-now-worknote-action/commit/3fa194e3dabbd6ce73b7fbd2716bfbb3e9819d1b))
+
+
+### Documentation
+
+* update workflow permissions and environment approval requirements ([6c181e2](https://github.com/agrc/service-now-worknote-action/commit/6c181e2b77f0ae4206088f9365c6d2ce93228165))
+
 ## [2.0.0](https://github.com/agrc/service-now-worknote-action/compare/v1.0.25...v2.0.0) (2026-11-04)
 
 
