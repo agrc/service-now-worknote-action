@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/agrc/service-now-worknote-action/compare/v2.0.1...v2.0.2) (2026-11-25)
+
+
+### Features
+
+* convert changelog md to html for nicer worknote display ([e3d0937](https://github.com/agrc/service-now-worknote-action/commit/e3d09370a38974ff9f5bd2a4da69a86e59741dc1))
+
 ## [2.0.1](https://github.com/agrc/service-now-worknote-action/compare/v2.0.0...v2.0.1) (2026-11-24)
 
 
